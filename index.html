@@ -1,50 +1,129 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>Gulp and Wordpress - Leonardo Faria</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Gulp and Wordpress</h1>
+          <h3>Leonardo Faria</h3>
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        <section>
+          <h1>Leonardo</h1>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+          <ul>
+            <li>🇧🇷</li>
+            <li>Front-end developer @ Dynamic Leap</li>
+            <li>www.leonardofaria.net</li>
+            <li>@leozera</li>
+          </ul>
+        </section>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        <section>
+          <h1>Wordpress</h1>
+
+          <ul>
+            <li>25% of the Web</li>
+            <li>Plugins and Themes</li>
+            <li>Huge community, easy for beginners</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif">
+        </section>
+
+        <section>
+          <ul>
+            <li>Less/Sass to CSS compilation</li>
+            <li>Bundling and minifying libraries and stylesheets</li>
+            <li>Running code analysis</li>
+            <li>Copying files to an output directory</li>
+            <li>Refreshing your browser when you save a file</li>
+          </ul>
+        </section>
+
+        <section>
+          <pre class="language-javascript"><code>
+  var gulp = require('gulp'),
+      sass = require('gulp-ruby-sass') ;
+
+  gulp.task('css', function(){
+    return gulp.src('./src/css/*.scss')
+      .pipe(sass())
+      .pipe(gulp.dest('./public/css'));
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <pre class="language-javascript"><code>
+  browserSync = require('browser-sync').create(),
+
+  gulp.task('serve', function() {
+    browserSync.init({
+      proxy: "http://mylocalserver"
+    });
+  });
+          </code></pre>
+
+          <pre class="fragment language-javascript"><code>
+  gulp.task('watch', function() {
+    gulp.watch('./src/**/*.php').on('change', browserSync.reload);
+    gulp.watch('./src/**/*.scss', ['css', browserSync.reload]); 
+  });
+          </code></pre>
+
+          <pre class="fragment language-javascript"><code>
+  gulp.task('default', ['serve', 'watch']);
+          </code></pre>
+        </section>
+
+        <section>
+          <!-- <img src="http://i.giphy.com/kudIERso2pFiE.gif"> -->
+          <img src="http://i.giphy.com/Uv0VUrAT6FtMQ.gif">
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
