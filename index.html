@@ -62,7 +62,6 @@
             <li>Bundling and minifying libraries and stylesheets</li>
             <li>Refreshing your browser when you save a file</li>
             <li>Copying files to an output directory</li>
-            <li>Running code analysis</li>
             <li>And much more!</li>
           </ul>
         </section>
@@ -93,7 +92,6 @@
 
           <pre class="fragment language-javascript"><code>
   gulp.task('watch', function() {
-    gulp.watch('./src/**/*.php').on('change', browserSync.reload);
     gulp.watch('./src/**/*.scss', ['css', browserSync.reload]); 
   });
           </code></pre>
@@ -119,7 +117,7 @@
               </ul>
             </li>
             <li>Sync <code>wp-content</code> folder <br/>&nbsp;</li>
-            <li>bit.ly/wp-gulp</li>
+            <li><a href="http://bit.ly/wp-gulp">bit.ly/wp-gulp</a></li>
           </ul>
         </section>
 
